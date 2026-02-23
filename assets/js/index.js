@@ -1,3 +1,13 @@
+//mobile menu!
+const menuBtn = document.getElementById("mobileMenuBtn");
+const navMenu = document.getElementById("navMenu");
+menuBtn.addEventListener("click", () => {
+  navMenu.classList.toggle("mobile-menu");
+  const icon = menuBtn.querySelector("i");
+  icon.classList.toggle("fa-bars");
+  icon.classList.toggle("fa-xmark");
+});
+//====================================================================
 const modeToggle = document.getElementById("theme-toggle-button");
 const htmlElement = document.querySelector("html");
 let flag = false;

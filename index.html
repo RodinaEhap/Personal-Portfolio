@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html dir="rtl" lang="ar" class="dark font-tajawal">
   <head>
     <!-- Essential Meta Tags (must be first) -->
@@ -65,7 +65,10 @@
       rel="preload"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
       as="style"
-      onload="this.onload=null;this.rel='stylesheet'"
+      onload="
+        this.onload = null;
+        this.rel = 'stylesheet';
+      "
       crossorigin="anonymous"
     />
     <noscript>
@@ -81,7 +84,10 @@
       rel="preload"
       href="https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&family=Cairo:wght@200..1000&family=Tajawal:wght@200;300;400;500;700;800;900&display=swap"
       as="style"
-      onload="this.onload=null;this.rel='stylesheet'"
+      onload="
+        this.onload = null;
+        this.rel = 'stylesheet';
+      "
     />
     <noscript>
       <link
@@ -90,14 +96,13 @@
       />
     </noscript>
 
-    
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="assets/imgs/favicon.png" />
     <!-- Main Stylesheet -->
     <link rel="stylesheet" crossorigin href="assets/css/style.css" />
   </head>
   <body
-    class=" bg-gradient-to-br from-slate-100 via-slate-50 to-slate-100 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 text-slate-900 dark:text-white transition-colors duration-300"
+    class="bg-gradient-to-br from-slate-100 via-slate-50 to-slate-100 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 text-slate-900 dark:text-white transition-colors duration-300"
   >
     <!-- Skip to Content Link for Accessibility -->
     <a
@@ -129,7 +134,11 @@
             أحمد حسن
           </div>
         </div>
-        <div class="nav-links flex gap-8 items-center" role="menubar">
+        <div
+          id="navMenu"
+          class="nav-links gap-8 items-center flex"
+          role="menubar"
+        >
           <a
             class="text-slate-600 dark:text-slate-300 hover:text-primary transition-colors duration-300 text-lg"
             href="#hero-section"
@@ -191,9 +200,15 @@
             </span>
           </button>
         </div>
+        <button
+          id="mobileMenuBtn"
+          class="lg:hidden text-slate-900 dark:text-white text-2xl focus:outline-none"
+          aria-label="إغلاق القائمة"
+        >
+          <i class="fa-solid fa-bars"></i>
+        </button>
       </div>
     </nav>
-
     <main id="main-content">
       <!-- ============================================
          HERO SECTION - Modern Split Layout Design
@@ -3046,7 +3061,6 @@
       class="fixed top-0 right-0 h-full w-80 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl shadow-2xl transform translate-x-full transition-transform duration-300 z-[60] border-l border-slate-200 dark:border-slate-800"
       role="dialog"
       aria-label="لوحة تخصيص المظهر"
-      
       inert=""
     >
       <!-- Sidebar Content -->
