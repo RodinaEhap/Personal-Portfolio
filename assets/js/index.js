@@ -66,6 +66,8 @@ const scrollToTop = document.getElementById("scroll-to-top");
 const links = document.querySelectorAll("#header a");
 const sections = document.querySelectorAll("section[id]");
 const reset = document.getElementById("reset-settings");
+const filterPortfolio = document.querySelectorAll(".portfolio-filter");
+const portfolioItems = document.querySelectorAll(".portfolio-item");
 
 getTheme();
 getFont();
@@ -272,3 +274,55 @@ const active = new IntersectionObserver(
   { threshold: 0.3 },
 );
 sections.forEach((sec) => active.observe(sec));
+//we will listen all portfolio filter buttons-->
+filterPortfolio.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    filterPortfolio.forEach((allBtn) => {
+      allBtn.classList.remove(
+        "active",
+        "bg-linear-to-r",
+        "from-primary",
+        "to-secondary",
+        "text-white",
+      );
+      allBtn.classList.add(
+        "bg-white",
+        "dark:bg-slate-800",
+        "text-slate-600",
+        "dark:text-slate-300",
+      );
+    });
+    btn.classList.add(
+      "active",
+      "bg-linear-to-r",
+      "from-primary",
+      "to-secondary",
+      "text-white",
+    );
+    const filterValue = btn.getAttribute("data-filter");
+    portfolioItems.forEach((item) => {
+      const itemCategory = item.getAttribute("data-category");
+      if (filterValue !== "all" && itemCategory !== filterValue) {
+        item.style.transition = "opacity 0.3s, transform 0.3s";
+        item.style.opacity = "0";
+        item.style.transform = "scale(0.8)";
+        setTimeout(() => {
+          item.classList.add("hidden");
+        }, 570);
+      }
+    });
+    setTimeout(() => {
+      portfolioItems.forEach((item) => {
+        const itemCategory = item.getAttribute("data-category");
+        if (filterValue === "all" || itemCategory === filterValue) {
+          item.classList.remove("hidden");
+          requestAnimationFrame(() => {
+            item.style.transition = "opacity 0.3s, transform 0.3s";
+            item.style.opacity = "1";
+            item.style.transform = "scale(1)";
+          });
+        }
+      });
+    }, 580);
+  });
+});
