@@ -326,3 +326,65 @@ filterPortfolio.forEach((btn) => {
     }, 580);
   });
 });
+const carousel = document.getElementById("testimonials-carousel");
+const nextBtn = document.getElementById("next-testimonial");
+const prevBtn = document.getElementById("prev-testimonial");
+const indicators = document.querySelectorAll(".carousel-indicator");
+const allCards = carousel.querySelectorAll(".testimonial-card");
+let currentIndex = 0;
+function updateCarousel(index) {
+  //length===4
+  if (index >= indicators.length) {
+    currentIndex = 0;
+    //start===0 && end===length-1
+  } else if (index < 0) {
+    currentIndex = indicators.length - 1;
+  } else {
+    currentIndex = index;
+  }
+  const cardWidth = carousel.querySelector(".testimonial-card").offsetWidth;
+  carousel.style.transform = `translateX(${currentIndex * cardWidth}px)`;
+  allCards.forEach((card, i) => {
+    if (i === currentIndex) {
+      //we can use const to store )(card.querySelector("div")))
+      card
+        .querySelector("div")
+        .classList.add(
+          "bg-slate-50",
+          "dark:bg-slate-800",
+          "scale-105",
+          "opacity-100",
+        );
+      card.querySelector("div").classList.remove("bg-white/80", "opacity-50");
+    } else {
+      card
+        .querySelector("div")
+        .classList.remove(
+          "bg-slate-50",
+          "dark:bg-slate-800",
+          "scale-105",
+          "opacity-100",
+        );
+      card.querySelector("div").classList.add("bg-white/80", "opacity-50");
+    }
+  });
+  indicators.forEach((indc, i) => {
+    if (i === currentIndex) {
+      indc.classList.add("bg-accent", "scale-125");
+      indc.classList.remove("bg-slate-400", "dark:bg-slate-600");
+    } else {
+      indc.classList.remove("bg-accent", "scale-125");
+      indc.classList.add("bg-slate-400", "dark:bg-slate-600");
+    }
+  });
+}
+nextBtn.addEventListener("click", () => updateCarousel(currentIndex + 1));
+prevBtn.addEventListener("click", () => updateCarousel(currentIndex - 1));
+indicators.forEach((indc, i) => {
+  indc.addEventListener("click", () => updateCarousel(i));
+});
+
+//safety
+window.addEventListener("resize", () => updateCarousel(currentIndex));
+//start
+updateCarousel(0);
